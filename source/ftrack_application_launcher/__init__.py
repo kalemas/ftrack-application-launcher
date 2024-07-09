@@ -8,7 +8,10 @@ import os
 import ssl
 
 import subprocess
-import collections
+try:
+    from collections import Mapping, MutableMapping
+except ImportError:
+    from collections.abc import Mapping, MutableMapping
 import base64
 import getpass
 import json
@@ -773,11 +776,11 @@ class ApplicationLauncher(object):
             The *mapping* is modified in place.
 
         '''
-        if not isinstance(mapping, collections.MutableMapping):
+        if not isinstance(mapping, MutableMapping):
             return
 
         for key, value in mapping.copy().items():
-            if isinstance(value, collections.Mapping):
+            if isinstance(value, Mapping):
                 self._conform_environment(value)
             else:
                 value = str(value)
