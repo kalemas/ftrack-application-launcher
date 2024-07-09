@@ -109,7 +109,7 @@ setup(
         'version_scheme': 'post-release',
     },
     install_requires=[
-        'ftrack-python-api >= 2, < 3',
+        'ftrack-python-api',
         'ftrack-action-handler',
         'future',
     ],
